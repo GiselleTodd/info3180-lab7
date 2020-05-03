@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<form class="" action="index.html" method="post">
+  <div class="form-group">
+    {{ form.label.description }} {{ form.description }}
+  </div>
+  <div class="form-group">
+    {{ form.label.upload }} {{ form.upload }}
+  </div>
+</form>
+{% endblock %}
