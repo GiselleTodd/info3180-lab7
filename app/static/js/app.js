@@ -35,13 +35,13 @@ const Upload = Vue.component('upload-form', {
   template:`
     <form @submit.prevent="uploadPhoto" class="" action="" method="post" id="uploadForm">
       <div class="form-group">
-        <textarea name="description" form="uploadForm">Add photo description.. </textarea>
+        <textarea id="description" name="description" form="uploadForm" v-model="description" enctype="multipart/form-data">Add photo description.. </textarea>
       </div>
       <div class="form-group">
         <label for="upload"> Upload </label>
         <input type="file" name="upload" value="">
       </div>
-      <button type="submit" name="submit"> Submit </button>
+      <button id="submit" type="submit" name="submit"> Submit </button>
     </form>
   `,
 
