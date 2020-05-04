@@ -20,12 +20,29 @@ def upload():
     form = UploadForm()
 
     if request.method == 'POST' and form.validate_on_submit():
-        file= form.upload.data
-        filename = secure_filename(file.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename ))
 
-        return jsonify(filename=filename, description=form.description.data, message = "filename", errors=errors)
-    return render_template('index.html',form=form)
+        desc = form.description.data
+        photo = form.upload.data
+        filename = secure_filename(photo.filename)
+
+        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename ))
+
+        status = [{
+            "message": "File Upload Successful",
+            "filename": filename,
+            "description": desc
+        }]
+
+        return jsonify(status=status)
+
+    status = {
+        "errors": [
+            form_errors(form)
+        ]
+    }
+
+    return jsonify(status=status)
+
 
 # Please create all new routes and view functions above this route.
 # This route is now our catch all route for our VueJS single page
